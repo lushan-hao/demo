@@ -1,0 +1,163 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<title>移智付管理中心</title>
+<script type="text/javascript">
+addLoadEvent = function(func) {if (typeof jQuery != "undefined") jQuery(document).ready(func); else if (typeof wpOnload!='function'){wpOnload=func;} else {var oldonload=wpOnload; wpOnload=function(){oldonload();func();}}};
+
+function convertEntities(o) {
+	var c = function(s) {
+		if (/&[^;]+;/.test(s)) {
+			var e = document.createElement("div");
+			e.innerHTML = s;
+			return !e.firstChild ? s : e.firstChild.nodeValue;
+		}
+		return s;
+	}
+
+	if ( typeof o === 'string' )
+		return c(o);
+	else if ( typeof o === 'object' )
+		for (var v in o) {
+			if ( typeof o[v] === 'string' )
+				o[v] = c(o[v]);
+		}
+	return o;
+};
+</script>
+<link rel="stylesheet" href="global.css" type="text/css" media="all"/>
+<link rel="stylesheet" href="wp-admin.css" type="text/css" media="all"/>
+<link rel="stylesheet" href="colors-fresh.css" type="text/css" media="all"/>
+<link rel="stylesheet" href="c_tour.css" type="text/css" media="all"/>
+<link rel="stylesheet" href="style.css" type="text/css" media="all"/>
+<link rel="stylesheet" href="style1.css" type="text/css" media="all"/>
+<link rel="stylesheet" href="jquery-Tcalendar.css" type="text/css" media="all"/>
+<link rel='stylesheet' href='ie.css' type='text/css' media='all' />
+<link rel='stylesheet' href='loginstyle.css' type='text/css' media='all' />
+<script type="text/javascript" src="js/chart/line.js"></script>
+<script type="text/javascript" src="js/chart/chart.js"></script>
+<script type="text/javascript" src="js/echarts-all.js"></script>
+<script type="text/javascript" src="js/echarts.js"></script>
+<script type="text/javascript" src="js/echarts-myself.js"></script>
+<script type="text/javascript" src="js/flotr2.min.js"></script>
+<script type="text/javascript" src="js/flotr2-chart.js"></script>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/hoverIntent.js"></script>
+<script type="text/javascript" src="js/jquery-Tcalendar.js"></script>
+<script type="text/javascript">
+	userSettings = {
+		url: "/wpzh27/",
+		uid: "1",
+		time: "1231147153"
+	}
+</script>
+<script type="text/javascript" src="js/jquery.color.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+
+<script type="text/javascript" src="js/jquery.form.js"></script>
+<script type="text/javascript" src="js/suggest.js"></script>
+<script type="text/javascript" src="js/ajax.js"></script>
+<script type="text/javascript">
+	inlineEditL10n = {
+		error: "保存时发生错误。",
+		ntdeltitle: "从批量编辑移除",
+		notitle: "(无标题)"
+	}
+	try{convertEntities(inlineEditL10n);}catch(e){};
+</script>
+</head>
+<body class="wp-admin">
+<div id="wpwrap">
+<div id="wpcontent">
+<div id="wphead">
+ <h1><a href="#" title="">移智付管理中心 <span></span></a></h1>
+
+</div>
+
+<form action="admin/main.do" method="post">
+<div id="con" >
+    <div class="h2"></div>
+
+    <div id="message" class="t_c_r"></div>
+
+    <div class="loginbox">
+         <ul>
+         <li><input name="username" class="loginuser"  type="text" id="username" size="30" value="" />
+        　		<span id="e_hint" class="t_c_r"></span>
+ 			
+      	</li>
+      	<li><input name="password" class="loginpwd" type="password" id="password" size="30"  />
+      　        		<span id="p_hint" class="t_c_r >"></span>
+      	</li>
+
+      <li><input name="checkcode" class="loginttt" type="text" id="checkcode" size="6"  />
+      <a href='javascript:captchaFun();' tabindex='-1' ><img align="top" id="captchaimg" src="admin/auth/safe-code" id=vimg title="看不清换一个！" border="0"></a> 
+      　	  <span id="c_hint" class="t_c_r "></span>
+      
+	  
+	  
+	  
+      </li>
+      <li><input  class="loginbtn" type="submit" name="login" class="button" id="button" value="登 录" onclick="return checkCheckCode();" />
+      </li>
+      </ul>
+    </div>
+    <div class="C"></div>
+</div>
+</form>
+
+
+
+<script language="javascript">
+	//验证码
+	$(function(){
+    $('.loginbox').css({'position':'absolute','left':($(window).width()-692)/2});
+	$(window).resize(function(){  
+    $('.loginbox').css({'position':'absolute','left':($(window).width()-692)/2});
+    });  
+});  
+function captchaFun(){
+	document.getElementById("captchaimg").src = "/vpay/admin/auth/safe-code;jsessionid=A440DCE44FDEE7DF909A8E16BC3BCBA3?timeval="+new Date().getTime();
+	//alert("/vpay/admin/auth/safe-code;jsessionid=A440DCE44FDEE7DF909A8E16BC3BCBA3?timeval="+new Date().getTime());
+}
+function checkCheckCode()
+{
+    var flag = 1;
+    var name = $('#username').attr('value');
+    if(!name){
+        $('#e_hint').html('请输入你的用户名！');
+        $('#e_hint').fadeIn();
+        $('#e_hint').fadeOut();
+        $('#e_hint').fadeIn();
+        flag = 0;
+    }else{
+        $('#e_hint').html('');
+    }
+    var password = $('#password').attr('value');
+    if(!password){
+        $('#p_hint').html('请输入密码！');
+        $('#p_hint').fadeOut();
+        $('#p_hint').fadeIn();
+        flag = 0;
+    }else{
+        $('#p_hint').html('');
+    }
+    var checkcode = $('#checkcode').attr('value');
+    if(!checkcode){
+        $('#c_hint').html('请输入验证码！');
+        $('#c_hint').fadeOut();
+        $('#c_hint').fadeIn();
+        flag = 0;
+    }else{
+        $('#c_hint').html('');
+    }
+    if(!flag){
+        return false;
+    }
+}
+</script>
+</div>
+</div>
+</body>

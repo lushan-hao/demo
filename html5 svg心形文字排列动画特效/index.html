@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+<meta charset="UTF-8">
+<title>What's in a name?</title>
+
+
+
+<link rel="stylesheet" href="css/style.css">
+
+
+</head>
+
+<body>
+
+<p><label><input type="checkbox" id="cb" />显示线条</label></p>
+
+<svg id="theSvg" viewBox="-120 -30 240 180" enable-background="new 0 0 174 148" xml:space="preserve">
+  <defs>
+    <filter id="f" filterUnits="userSpaceOnUse" id="shadow" x="-120" y="-30" width="120%" height="120%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="5" result="blur"></feGaussianBlur>
+      <feOffset in="blur" dx="3" dy="5" result="shadow"></feOffset>
+      <feFlood flood-color="rgba(3,0,0,.9)" result="color" />
+      <feComposite in ="color" in2="shadow" operator="in" />
+      <feComposite in="SourceGraphic"/>
+    </filter>
+<path id = "shape"
+d="M0, 21.054 
+   C0, 21.054 24.618, -15.165 60.750, 8.554 
+   C93.249, 29.888 57.749, 96.888 0, 117.388
+   C-57.749, 96.888  -93.249, 29.888 -60.750, 8.554
+   C-24.618, -15.165  -0, 21.054 -0, 21.054z    
+"/>
+  <path id="partialPath" />  
+  
+  </defs> 
+
+ <text dy="-2" filter="url(#f)">
+		<textPath xlink:href="#partialPath"  startOffset="12">What's in a name? That which we call a rose By any other word would smell as sweet...</textPath> 
+ </text>
+
+ <use id="useThePath" xlink:href="#partialPath" stroke="white" stroke-width=".5" stroke-opacity=".5" fill="none" style="display:none;" />
+</svg>
+  
+  
+
+<script  src="js/index.js"></script>
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>H5荧光/雪花效果</title>
+	<style>
+		.wall{
+		    position: absolute;
+		    top: 0;
+		    left: 0;
+		    bottom: 0;
+		    right: 0;
+		}
+		.bgImg{
+		    background: url(./img/preview.jpg)no-repeat;
+		    background-size: cover;
+		}
+		.midground{
+		    background: url(./img/midground.png);
+		    z-index: 1;
+		    -webkit-animation: cc 100s linear infinite;
+		    -moz-animation: cc 100s linear infinite;
+		    -o-animation: cc 100s linear infinite;
+		    animation: cc 100s linear infinite;
+		}
+		.foreground{
+			background: url(./img/foreground.png);
+		    z-index: 2;
+		    -webkit-animation: cc 153s linear infinite;
+		    -o-animation: cc 153s linear infinite;
+		    -moz-animation: cc 153s linear infinite;
+		    animation: cc 153s linear infinite;
+		}
+		.topVertical{
+			background: url(./img/midground.png);
+		    z-index: 4;
+		    -webkit-animation: dd 100s linear infinite;
+		    -o-animation: dd 100s linear infinite;
+		    animation: da 100s linear infinite;
+		}
+
+		@keyframes cc{
+			0% {
+			    background-position: 0 0;
+			}
+			100% {
+			    background-position: 600% 0;
+			}
+		}
+		@keyframes da{
+			0% {
+			    background-position: 0 0;
+			}
+			100% {
+			    background-position: 0 600%;
+			}
+		}
+	</style>
+</head>
+<body>
+<audio src="https://static.sucaihuo.com/jquery/40/4078/demo/mp3/Approaching%20Nirvana%20-%20You.mp3" controls autoplay style="display: none;"></audio>
+<div class="wall bgImg"></div>
+<div class="wall midground"></div>
+<div class="wall foreground"></div>
+<div class="wall topVertical"></div>
+</body>
+</html>

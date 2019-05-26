@@ -1,0 +1,20 @@
+body{background: #be0e2e;font-family: consolas; color:white; }
+svg {
+  
+  width: 110vmin;
+  display:block;
+  position:absolute;
+  margin:auto;
+  top:0;bottom:0;left:0;right:0;
+  z-index:1;
+}
+text {
+  fill: white;
+  font-family: consolas;
+  font-size: 9px;
+}
+
+p{position:absolute;z-index:2}
+
+label{-webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;opacity:.8}

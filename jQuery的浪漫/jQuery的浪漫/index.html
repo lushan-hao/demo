@@ -1,0 +1,133 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="keywords" content=""/>
+		<meta name="description" content=""/>
+		<title>Jquery的浪漫</title>
+		<style style="text/css">
+			*{
+				margin:0;
+				padding:0;
+			}
+			body{
+				background:url("images/3.jpg");
+				background-size:cover;
+				overflow: hidden;
+			}
+			/*start top*/
+			.top{
+				width:400px;
+				height:100px;
+				margin:60px auto;
+				font-size:30px;
+				font-family:"华文行楷";
+				color:#fff;
+			/* <!--background:-webkit-linear-gradient(45deg,#ff0000,#ffcc00,#ffff99,#33ccff,#00ff33,#6600ff,#333399);
+			-webkit-background-clip:text;--> */
+			}
+			/*end top*/
+			/*start box*/
+			.box{
+				width:310px;
+				height:310px;
+				margin:auto;
+				perspective:800px;/*景深*/
+			}
+			.box .pic{
+				position:relative;
+				transform-style:preserve-3d;/*3d环境*/
+				animation:play 10s linear infinite;/*动画名称 执行时间 匀速 无限执行*/}
+			.box ul li{
+				list-style:none;
+				position:absolute;
+				top:0;
+				left:0;
+			}
+			/*start box*/
+			/*定义一个关键帧*/
+			@keyframes play{
+				from{transform:rotateY(0deg);}
+				to{transform:rotateY(360deg);}
+			}
+			/*start text*/
+			#text{width:500px;height:200px;color:#6fade1;margin:auto;font-size:24px;font-family:"方正喵呜体";}
+			/*end text*/
+		</style>
+	</head>
+	<body>
+		<!--start top-->
+		<div class="top">
+			<marquee behavior="alternate">时光不老，我们不散</marquee>
+		</div>
+		<!--end top-->
+		<!--start box-->
+		<div class="box">
+			<div class="pic">
+				<ul>
+					<li><img src="images/6.png" width="" height="" alt=""/></li>
+					<li><img src="images/2.png" width="" height="" alt=""/></li>
+					<li><img src="images/3.png" width="" height="" alt=""/></li>
+					<li><img src="images/4.png" width="" height="" alt=""/></li>
+					<li><img src="images/5.png" width="" height="" alt=""/></li>
+					<li><img src="images/MNK.png" width="" height="" alt=""/></li>
+				</ul>
+			</div>
+		</div>
+		<!--end box-->
+		<!--start text-->
+		<div id="text"></div>
+		<!--end text-->
+		<embed src="music.mp3" hidden="true"/>
+		<!-- <audio src="music.mp3" hidden="true" loop="true" autoplay></audio> -->
+		<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+		<script>
+			$(".pic ul li").each(function(i){//遍历
+				var deg=360/$(".pic ul li").size();//size个数
+				//当前的li对象 添加css样式
+				$(this).css({"transform":"rotateY("+deg*i+"deg) translateZ(216px)"});
+			});
+			
+			var i=0;
+			var str="能够遇见你是我最大的幸运，有了你生活变得丰富多彩，有了你，世界变得如此迷人；你是我的世界，我的世界是你，对我来说，不是在最美好的时光遇见了你，而是遇见你后都是最美好的时光！";
+			
+			window.onload=function typing(){
+				//获取div
+				var mydiv=document.getElementById("text");
+				mydiv.innerHTML+=str.charAt(i);
+				i++;
+				var id=setTimeout(typing,100);
+				if(i==str.length){
+					clearTimeout(id);
+				}
+			}
+			var minSize = 5; //最小字体
+			var maxSize = 50;//最大字体
+			var newOne = 100; //生成雪花间隔
+			var flakColor = "#fff"; //雪花颜色
+			var flak = $("<div class='xh'></div>").css({position:"absolute","top":"0px"}).html("❉");//定义一个雪花
+			var dhight = $(window).height(); //定义视图高度
+			var dw =$(window).width(); //定义视图宽度
+			setInterval(function(){
+			var sizeflak = minSize+Math.random()*maxSize; //产生大小不等的雪花
+			var startLeft = Math.random()*dw; //雪花生成是随机的left值
+			var startopcity = 0.7+Math.random()*0.3; //随机透明度
+			var endpositionTop= dhight-100; //雪花停止top的位置
+			var endLeft= Math.random()*dw; //雪花停止的left位置
+			var durationfull = 5000+Math.random()*3000; //雪花飘落速度不同
+			flak.clone().appendTo($("body")).css({
+			"left":startLeft ,
+			"opacity":startopcity,
+			"font-size":sizeflak,
+			"color":flakColor
+			}).animate({
+			"top":endpositionTop,
+			"left":endLeft,
+			"apacity":0.1
+			},durationfull,function(){
+			$(this).remove()
+			});
+			},newOne);
+		</script>
+	</body>
+</html>

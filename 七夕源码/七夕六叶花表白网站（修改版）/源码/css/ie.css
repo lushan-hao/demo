@@ -1,0 +1,8 @@
+
+/* -----------------for pie------------------- */
+
+.submenu ul, .next, .prev, .date, .pagin a{ behavior: url(js/PIE.htc); }
+
+.next:hover, .prev:hover{color:#fff; background-color:#3e3435}
+.pagin a:hover{color:#fff; background-color:#3e3435}
+.pagin a.active, .pagin a.active:hover{background:none; font-weight:bold; color:#1b1b1b}
